@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Checklist de Inspeção – Empilhadeira / Reach Stacker</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--tx:#1a1d21;--mut:#5f6872;--bd:#d9dde2;--ok:#1b7f3b;--okb:#e3f4e8;--nc:#c62828;--ncb:#fdeaea;--ac:#0b5cab;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171a;--card:#1e2226;--tx:#eceff2;--mut:#9aa4ae;--bd:#343b42;--ok:#5fd07f;--okb:#183524;--nc:#ff6b6b;--ncb:#3d1b1b;--ac:#6db3f2;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171a;--card:#1e2226;--tx:#eceff2;--mut:#9aa4ae;--bd:#343b42;--ok:#5fd07f;--okb:#183524;--nc:#ff6b6b;--ncb:#3d1b1b;--ac:#6db3f2;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:12px}
+h1{font-size:1.15rem;margin:8px 0 2px}.sub{color:var(--mut);font-size:.85rem;margin-bottom:10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:.8rem;color:var(--mut);margin-bottom:3px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+h2{font-size:.95rem;margin:0 0 8px;text-transform:uppercase;letter-spacing:.03em;color:var(--ac)}
+.it{padding:10px 0;border-top:1px solid var(--bd)}.it:first-of-type{border-top:0}
+.q{margin-bottom:8px}.q b{font-weight:600}
+.crit{color:var(--nc);font-weight:700;font-size:.7rem;margin-left:6px;border:1px solid var(--nc);border-radius:4px;padding:0 4px}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btns button{padding:12px;border-radius:8px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit;font-weight:600;cursor:pointer}
+.btns button.on-ok{background:var(--okb);border-color:var(--ok);color:var(--ok)}
+.btns button.on-nc{background:var(--ncb);border-color:var(--nc);color:var(--nc)}
+.it.nc{background:var(--ncb);margin:0 -12px;padding:10px 12px;border-left:5px solid var(--nc)}
+.obs{margin-top:8px;display:none}.it.nc .obs{display:block}.obs textarea{min-height:60px;border-color:var(--nc)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 12px;margin-bottom:12px;display:flex;justify-content:space-between;font-size:.9rem}
+#cnt.bad{color:var(--nc);font-weight:700}
+.act{width:100%;padding:14px;border:0;border-radius:10px;font:inherit;font-weight:700;cursor:pointer;margin-top:8px;background:var(--ac);color:#fff}
+.act.sec{background:transparent;color:var(--ac);border:2px solid var(--ac)}
+.banner{padding:12px;border-radius:10px;font-weight:700;margin-bottom:10px}
+.banner.ok{background:var(--okb);color:var(--ok)}.banner.nc{background:var(--ncb);color:var(--nc)}
+.ncb{border:2px solid var(--nc);background:var(--ncb);border-radius:8px;padding:8px;margin:6px 0}
+.ncb.new{border-style:dashed}
+.err{color:var(--nc);font-size:.85rem;margin-top:6px}.warn{color:var(--nc);font-size:.8rem;margin-top:4px}
+.chip{display:inline-block;padding:6px 10px;border:1px solid var(--bd);border-radius:20px;margin:2px;font-size:.85rem;cursor:pointer;background:var(--bg);color:var(--tx)}
+.chip.bad{border-color:var(--nc);color:var(--nc);font-weight:700}
+.k{display:grid;grid-template-columns:40% 1fr;gap:4px 8px;font-size:.9rem}.k span:nth-child(odd){color:var(--mut)}
+.ph{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.ph img{width:76px;height:76px;object-fit:cover;border-radius:6px;border:1px solid var(--bd)}
+
+.rw{padding:10px;border:1px solid var(--bd);border-radius:8px;margin-top:6px;cursor:pointer;font-size:.9rem}.rw.cur{border-color:var(--ac);background:var(--bg)}
+</style>
+</head>
+<body>
+<main>
+<h1>Checklist de Inspeção – Empilhadeira / Reach Stacker</h1>
+<div class="sub">Rev. 07 · Itens <span class="crit">CRÍTICO</span> impedem a operação (acionar a manutenção imediatamente)</div>
+
+<div class="card"><div class="grid">
+<div><label>Nº Equipamento (QR Code)</label><input id="eq" autocapitalize="characters" placeholder="Ex.: RS6"></div>
+<div class="idf"><label>Operador</label><input id="op"></div>
+<div class="idf"><label>CNH (validade)</label><input id="cnh" type="date"></div>
+<div class="idf"><label>Equipe</label><select id="team"><option value="">Selecione</option><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
+<div class="idf"><label>Horário de turno</label><select id="tn"><option value="06-18">06:00 às 18:00</option><option value="18-06">18:00 às 06:00</option></select></div>
+<div class="idf"><label>Data da jornada</label><input id="dt" disabled></div>
+</div><div id="tnw" class="warn"></div></div>
+
+<div id="msg" class="sub"></div>
+<button class="act sec" id="retry" style="display:none">Tentar de novo</button>
+
+<div id="form" style="display:none">
+<button class="act sec" id="back" style="display:none;margin-bottom:10px">← Voltar ao checklist da escala</button>
+<div class="card"><label>Horímetro</label><input id="hor" type="number" inputmode="numeric"></div>
+<div class="bar"><span id="prog"></span><span id="cnt"></span></div>
+<div id="list"></div>
+<div class="card"><h2>Conclusão</h2>
+<div id="concl" class="sub"></div>
+<label>Existe avarias ou não conformidades?</label><div class="btns" data-g="av"><button data-v="sim">SIM</button><button data-v="nao">NÃO</button></div>
+<div id="avw" style="display:none;margin-top:10px"><label>Descreva as avarias / não conformidades</label><textarea id="avt" style="min-height:80px"></textarea><label style="margin-top:8px">Fotos (câmera ou galeria, até 4)</label><input id="avf" type="file" accept="image/*" multiple><div id="avp" class="ph"></div></div>
+<label style="margin-top:10px">Checklist OK?</label><div class="btns" data-g="ok"><button data-v="sim">SIM</button><button data-v="nao">NÃO</button></div>
+<label style="margin-top:10px">Requer manutenção?</label><div class="btns" data-g="mnt"><button data-v="nao">NÃO</button><button data-v="sim">SIM</button></div>
+<div id="osw" class="sub" style="display:none;margin-top:8px">O número da O.S. será informado pela manutenção.</div>
+<div id="err" class="err"></div>
+<button class="act" id="go">Enviar checklist</button></div>
+</div>
+
+<div id="view" style="display:none">
+<div class="card">
+<div id="vb" class="banner"></div><div id="vh" class="k"></div>
+<div id="vn"></div><div id="vc" class="sub" style="margin-top:8px"></div>
+<button class="act" id="showb">EXIBIR CHECKLIST</button>
+<button class="act sec" id="newp">SOLICITAR MANUTENÇÃO</button>
+<div id="np" style="display:none;margin-top:10px">
+<label>Item que precisa de manutenção</label><select id="npi"></select>
+<label style="margin-top:8px">Descreva a manutenção necessária</label><textarea id="npo" style="min-height:70px"></textarea><label style="margin-top:8px">Fotos (até 4)</label><input id="npf" type="file" accept="image/*" multiple><div id="npp" class="ph"></div>
+<div id="nperr" class="err"></div><button class="act" id="npgo">Registrar e enviar</button></div>
+<button class="act sec" id="pdfb">Salvar em PDF</button>
+</div>
+<div class="card"><h2>Checklists deste equipamento na escala</h2><div id="others"></div></div>
+<button class="act" id="newck">FAZER NOVO CHECKLIST</button>
+</div>
+</main>
+
+<div id="cf" style="display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:60;background:rgba(0,0,0,.6);align-items:center;justify-content:center;padding:16px"><div class="card" style="max-width:420px;width:100%;margin:0"><div style="font-size:1.05rem;font-weight:700">Você confirma as informações preenchidas neste documento?</div><div class="btns" style="margin-top:14px"><button class="on-nc" id="cfn">NÃO</button><button class="on-ok" id="cfy">SIM</button></div></div></div>
+<div id="docv" style="display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:50;background:#fff;color:#000;overflow:auto"><div style="position:sticky;top:0;display:flex;gap:8px;padding:8px;padding-top:calc(8px + env(safe-area-inset-top,0px));background:#eee;border-bottom:1px solid #ccc"><button class="act" id="docx" style="margin:0;flex:1;background:#0b5cab;color:#fff;border:0">← Fechar</button><button class="act" id="docpdf" style="margin:0;flex:1;background:#0b5cab;color:#fff;border:0">Salvar em PDF</button></div><div id="docbody" style="padding:12px;max-width:720px;margin:0 auto"></div></div>
+
+<script src="config.js"></script>
+<script>
+var API=window.CHECKLIST_API||'';
+var CRIT=['1.1','1.2','2.1','2.2','2.3','3.1','4.1','6.4'];
+var S=[["1 – Estrutura da empilhadeira / reach stacker / equipamento",[["1.1","Extintor de incêndio"],["1.2","Cinto de segurança com alarme sonoro e/ou visual"],["1.3","Equipamentos de içamento: Gancho C, Ariete, Garfos e Tenaz"],["1.4","Alças de apoio para acesso ao equipamento"],["1.5","Para-brisas"],["1.6","Espelhos retrovisores"],["1.7","Fita antiderrapante nos degraus"],["1.8","Faixas refletivas no mastro e no contrapeso"]]],
+["2 – Condições hidráulicas",[["2.1","Nível de óleo hidráulico"],["2.2","Nível de óleo dos freios"],["2.3","Condições físicas dos mangotes em geral (em caso de vazamento colocar nas obs.)"]]],
+["3 – Condições dos pneus",[["3.1","Existem cortes profundos nos pneus?",1]]],
+["4 – Sistema de freios",[["4.1","Sinalização no visor ou sonoro"]]],
+["5 – Motor",[["5.1","Nível de óleo do motor"],["5.2","Nível de água"],["5.3","Nível de combustível"],["5.4","Tampa do tanque de combustível"]]],
+["6 – Sistema de sinalização e iluminação",[["6.1","Sistema de iluminação dianteira e traseira"],["6.2","Dispositivo giroflex"],["6.3","Blue Spot – iluminação de segurança dianteira e traseira"],["6.4","Alarme sonoro de ré"],["6.5","Câmera de ré"],["6.6","Sensor de ré"],["6.7","Sistema IPAS"],["6.8","Alarme sonoro e/ou visual de aviso do freio estacionário"]]]];
+var $=function(i){return document.getElementById(i)},K='chk3_v1',items=[];
+S.forEach(function(s){s[1].forEach(function(i){items.push({id:i[0],t:i[1],inv:!!i[2]})})});
+var st={prof:{},dr:{}};try{st=Object.assign(st,JSON.parse(localStorage.getItem(K)||'{}'))}catch(e){}
+function persist(){try{localStorage.setItem(K,JSON.stringify(st))}catch(e){try{var c=JSON.parse(JSON.stringify(st));Object.keys(c.dr).forEach(function(k){c.dr[k].ph=[]});localStorage.setItem(K,JSON.stringify(c))}catch(e2){}}}
+function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function fd(v){if(!v)return'—';var p=v.split('-');return p[2]+'/'+p[1]+'/'+p[0]}
+function hm(t){var d=new Date(t);return('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
+function isNC(it,A){var a=A[it.id];return a&&(it.inv?a==='sim':a==='nao')}
+function eqk(){return $('eq').value.trim().toUpperCase()}
+function jor(){var d=new Date();if($('tn').value==='18-06'&&d.getHours()<6)d.setDate(d.getDate()-1);return iso(d)}
+function win(tn,date){var p=date.split('-'),y=+p[0],m=+p[1]-1,d=+p[2];return tn==='06-18'?[new Date(y,m,d,6),new Date(y,m,d,18)]:[new Date(y,m,d,18),new Date(y,m,d+1,6)]}
+function tnTxt(t){return t==='06-18'?'06:00 às 18:00':'18:00 às 06:00'}
+var D=null,CUR=null,LIST=[],eq='',NP=[];
+
+/* ---------- servidor ---------- */
+function api(){return API.indexOf('http')===0}
+function call(p){return p.then(function(r){return r.json()}).then(function(j){if(!j.ok)throw(j.err||'erro');return j})}
+function GET(q){return call(fetch(API+'?'+q))}
+function POST(o){return call(fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)}))}
+function b64(u){var s='',i;for(i=0;i<u.length;i+=8192)s+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(s)}
+function say(t,bad){$('msg').textContent=t||'';$('msg').className=bad?'err':'sub';$('msg').style.display=t?'block':'none';$('retry').style.display=bad?'block':'none'}
+function idf(on){document.querySelectorAll('.idf').forEach(function(e){e.style.display=on?'':'none'});$('tnw').style.display=on?'':'none'}
+
+/* ---------- fluxo ---------- */
+function load(){
+  eq=eqk();CUR=null;$('form').style.display=$('view').style.display='none';idf(false);
+  if(!eq){say('Informe o equipamento (ou escaneie o QR Code) para abrir o checklist.');return}
+  if(!api()){say('Sistema não configurado: falta a URL do servidor.',1);return}
+  say('Carregando…');
+  GET('action=list&eq='+encodeURIComponent(eq)).then(function(j){LIST=j.list;say('');if(LIST.length)openRec(LIST[0].id);else showForm()}).catch(function(e){say('Não foi possível carregar ('+e+'). Verifique o sinal.',1)})}
+function openRec(id){
+  say('Abrindo checklist…');
+  GET('action=get&id='+encodeURIComponent(id)).then(function(j){say('');CUR=j.rec;showView()}).catch(function(e){if(e==='expirado'){load()}else say('Não foi possível abrir ('+e+').',1)})}
+function showForm(){
+  idf(true);$('dt').value=fd(jor());chkTn();$('view').style.display='none';$('form').style.display='block';$('back').style.display=LIST.length?'block':'none';
+  D=st.dr[eq]||{A:{},O:{},hor:'',ok:'',mnt:'',tc:0,av:'',avt:'',ph:[]};D.ph=D.ph||[];
+  $('hor').value=D.hor;$('avt').value=D.avt||'';renderPh($('avp'),D.ph);renderItems();stats();scrollTo(0,0)}
+function chkTn(){var w=win($('tn').value,jor());$('tnw').textContent=Date.now()>+w[1]?'Atenção: o horário atual está fora do turno selecionado.':''}
+function saveProf(){st.prof={op:$('op').value,cnh:$('cnh').value,team:$('team').value,tn:$('tn').value};persist()}
+
+/* ---------- formulário ---------- */
+function renderItems(){var h='';S.forEach(function(s){h+='<div class="card"><h2>'+s[0]+'</h2>';
+  s[1].forEach(function(i){var id=i[0],a=D.A[id],nc=isNC({id:id,inv:!!i[2]},D.A);
+    h+='<div class="it'+(nc?' nc':'')+'" id="it'+id+'"><div class="q"><b>'+id+'</b> – '+esc(i[1])+(CRIT.indexOf(id)>-1?'<span class="crit">CRÍTICO</span>':'')+'</div><div class="btns"><button data-id="'+id+'" data-v="sim" class="'+(a==='sim'?(i[2]?'on-nc':'on-ok'):'')+'">SIM</button><button data-id="'+id+'" data-v="nao" class="'+(a==='nao'?(i[2]?'on-ok':'on-nc'):'')+'">NÃO</button></div><div class="obs"><label>Observação (obrigatória)</label><textarea data-o="'+id+'" placeholder="Descreva o problema">'+esc(D.O[id])+'</textarea></div></div>'});
+  h+='</div>'});$('list').innerHTML=h}
+
+
+function stats(){var n=Object.keys(D.A).length,nc=items.filter(function(i){return isNC(i,D.A)}).length,all=n===items.length;
+  $('prog').textContent=n+'/'+items.length+' respondidos';$('cnt').textContent=nc+(nc===1?' não conformidade':' não conformidades');$('cnt').className=nc?'bad':'';
+  if(all&&!D.tc){D.ok=nc?'nao':'sim';D.mnt=nc?'sim':'nao'}
+  if(all&&nc)D.av='sim';
+  $('concl').innerHTML=!all?'Responda todos os itens para concluir.':(nc?'<b style="color:var(--nc)">⚠ Há não conformidade(s): o equipamento requer manutenção.</b>':'<b style="color:var(--ok)">✔ Nenhuma não conformidade.</b>');
+  ['ok','mnt','av'].forEach(function(g){document.querySelectorAll('[data-g="'+g+'"] button').forEach(function(b){var on=D[g]===b.dataset.v,good=(g==='ok'?b.dataset.v==='sim':b.dataset.v==='nao');b.className=on?(good?'on-ok':'on-nc'):''})});
+  $('osw').style.display=D.mnt==='sim'?'block':'none';$('avw').style.display=D.av==='sim'?'block':'none';
+  st.dr[eq]=D;persist()}
+$('list').addEventListener('click',function(e){var b=e.target.closest('button[data-id]');if(!b)return;D.A[b.dataset.id]=b.dataset.v;var y=scrollY;renderItems();stats();scrollTo(0,y)});
+$('list').addEventListener('input',function(e){if(e.target.dataset.o){D.O[e.target.dataset.o]=e.target.value;st.dr[eq]=D;persist()}});
+document.querySelectorAll('#form [data-g]').forEach(function(g){g.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;D[g.dataset.g]=b.dataset.v;if(g.dataset.g!=='av')D.tc=1;stats()})});
+$('hor').addEventListener('input',function(){D.hor=this.value;stats()});
+$('avt').addEventListener('input',function(){D.avt=this.value;stats()});
+
+$('go').addEventListener('click',function(){
+  var m='',un=items.filter(function(i){return!D.A[i.id]}),ncs=items.filter(function(i){return isNC(i,D.A)}),no=ncs.filter(function(i){return!(D.O[i.id]||'').trim()}),w=win($('tn').value,jor());
+  if(!$('op').value.trim()||!$('cnh').value||!$('team').value||!D.hor)m='Preencha operador, CNH, equipe e horímetro.';
+  else if($('cnh').value<iso(new Date()))m='CNH vencida: operação não permitida.';
+  else if(Date.now()>+w[1])m='O horário atual está fora do turno selecionado. Corrija o turno.';
+  else if(un.length){m='Falta responder o item '+un[0].id+'.';$('it'+un[0].id).scrollIntoView({block:'center'})}
+  else if(no.length){m='Informe a observação do item '+no[0].id+'.';$('it'+no[0].id).scrollIntoView({block:'center'})}
+  else if(!D.av)m='Responda “Existe avarias ou não conformidades?”.';
+  else if(ncs.length&&D.av!=='sim')m='Há não conformidades nos itens: marque SIM em avarias e descreva.';
+  else if(D.av==='sim'&&!(D.avt||'').trim()){m='Descreva as avarias / não conformidades.';$('avt').scrollIntoView({block:'center'})}
+  else if(!D.ok||!D.mnt)m='Responda “Checklist OK” e “Requer manutenção”.';
+  else if(ncs.length&&(D.ok!=='nao'||D.mnt!=='sim'))m='Há não conformidades: marque Checklist OK = NÃO e Requer manutenção = SIM.';
+  else if(D.ok==='sim'&&D.mnt==='sim')m='Checklist OK e Requer manutenção não podem ser ambos SIM.';
+  $('err').textContent=m;if(m){$('err').scrollIntoView({block:'center'});return}
+  $('cf').style.display='flex'});
+$('cfy').addEventListener('click',function(){$('cf').style.display='none';doSend()});
+$('cfn').addEventListener('click',function(){$('cf').style.display='none';scrollTo(0,0)});
+
+function mailInfo(r,nw){r.extra=r.extra||[];var cl=function(t){return t.replace(/\s*\(em caso[^)]*\)/,'')},L=[];
+  items.forEach(function(i){if(isNC(i,r.A))L.push('Não conformidade ('+i.id+' – '+cl(i.t)+(r.O[i.id]?' – '+r.O[i.id]:'')+') apontada.')});
+  if(r.av==='sim'&&r.avt)L.push('Avaria / não conformidade ('+r.avt+') apontada.');
+  r.extra.forEach(function(x){var q=items.filter(function(z){return z.id===x.id})[0];L.push('Manutenção solicitada às '+hm(x.ts)+' ('+x.id+' – '+cl(q.t)+' – '+x.obs+').')});
+  var bad=L.length>0;
+  return{bad:bad,lines:L,subject:'Checklist do equipamento '+r.eq+' – '+(bad?'⚠ NÃO CONFORMIDADE':'OK')+(nw?' – MANUTENÇÃO SOLICITADA':'')+' – '+fd(r.date)+' – '+r.op}}
+
+function doSend(){
+  var nc=items.filter(function(i){return isNC(i,D.A)}).length,date=jor(),w=win($('tn').value,date),
+  r={eq:eq,op:$('op').value.trim(),cnh:$('cnh').value,team:$('team').value,tn:$('tn').value,date:date,hor:D.hor,A:D.A,O:D.O,ok:D.ok,mnt:D.mnt,av:D.av,avt:D.avt||'',ph:D.ph||[],nc:nc,ts:Date.now(),ini:+w[0],fim:+w[1],extra:[]};
+  $('go').disabled=true;$('err').textContent='Enviando…';
+  POST({action:'submit',rec:r,pdf:b64(pdfBytes(r)),pdfName:pdfName(r),mail:mailInfo(r,false)}).then(function(){delete st.dr[eq];persist();$('go').disabled=false;$('err').textContent='';load()}).catch(function(e){$('go').disabled=false;$('err').textContent='Não foi possível enviar ('+e+'). Verifique o sinal e toque em Enviar checklist de novo. Seus dados continuam salvos.'})}
+
+/* ---------- consulta ---------- */
+function imgs(a){return a&&a.length?'<div class="ph">'+a.map(function(s){return'<img src="'+s+'" alt="foto">'}).join('')+'</div>':''}
+function showView(){
+  var r=CUR;r.extra=r.extra||[];r.ph=r.ph||[];var bad=r.nc||r.extra.length||r.av==='sim';
+  idf(false);$('form').style.display='none';$('view').style.display='block';
+  var b=$('vb');b.className='banner '+(bad?'nc':'ok');b.textContent=bad?'⚠ '+(r.mnt==='sim'?'Requer manutenção':'Problema(s) registrado(s)')+' – '+r.eq:'✔ Checklist OK – '+r.eq;
+  $('vh').innerHTML=[['Operador',r.op],['Equipe',r.team],['Turno',tnTxt(r.tn)],['Data',fd(r.date)],['Horímetro',r.hor],['Avarias / não conformidades',r.av==='sim'?'SIM':'NÃO'],['Checklist OK',r.ok==='sim'?'SIM':'NÃO'],['Requer manutenção',r.mnt==='sim'?'SIM':'NÃO'],['Preenchido às',hm(r.ts)]].map(function(x){return'<span>'+x[0]+'</span><span><b>'+esc(x[1])+'</b></span>'}).join('');
+  var h='';items.forEach(function(i){if(isNC(i,r.A))h+='<div class="ncb"><b>🔴 '+i.id+' – '+esc(i.t)+'</b>'+(CRIT.indexOf(i.id)>-1?' <span class="crit">CRÍTICO</span>':'')+'<br>Obs.: '+esc(r.O[i.id])+'</div>'});
+  r.extra.forEach(function(x){var i=items.filter(function(y){return y.id===x.id})[0];h+='<div class="ncb new"><b>🔴 MANUTENÇÃO SOLICITADA às '+hm(x.ts)+' – '+x.id+' – '+esc(i.t)+'</b>'+(CRIT.indexOf(x.id)>-1?' <span class="crit">CRÍTICO</span>':'')+'<br>Obs.: '+esc(x.obs)+imgs(x.ph)+'</div>'});
+  if(r.av==='sim')h='<div class="ncb"><b>🔴 Avarias / não conformidades informadas</b><br>'+esc(r.avt)+imgs(r.ph)+'</div>'+h;
+  $('vn').innerHTML=(h?'<h2 style="margin-top:12px">Não conformidades</h2>':'')+h;
+  $('vc').textContent='Checklist preenchido: somente leitura. Disponível por QR Code até '+hm(r.fim)+'. Para registrar algo novo, use SOLICITAR MANUTENÇÃO.';
+  $('npi').innerHTML=items.map(function(i){return'<option value="'+i.id+'">'+i.id+' – '+esc(i.t)+'</option>'}).join('');$('np').style.display='none';
+  $('others').innerHTML=LIST.map(function(x){return'<div class="rw'+(x.id===r.id?' cur':'')+'" data-id="'+esc(x.id)+'"><b>'+esc(x.op)+'</b> · Equipe '+esc(x.team)+' · '+tnTxt(x.tn)+' · preenchido às '+hm(x.ts)+(x.bad?' ⚠':' ✔')+'</div>'}).join('');
+  scrollTo(0,0)}
+$('others').addEventListener('click',function(e){var d=e.target.closest('.rw');if(d)openRec(d.dataset.id)});
+$('newck').addEventListener('click',showForm);
+$('back').addEventListener('click',load);
+$('retry').addEventListener('click',load);
+$('newp').addEventListener('click',function(){$('np').style.display=$('np').style.display==='none'?'block':'none'});
+$('npgo').addEventListener('click',function(){var o=$('npo').value.trim();if(!o){$('nperr').textContent='Descreva a manutenção necessária.';return}
+  var x={id:$('npi').value,obs:o,ph:NP,ts:Date.now()},r=JSON.parse(JSON.stringify(CUR));r.extra=(r.extra||[]).concat([x]);
+  $('npgo').disabled=true;$('nperr').textContent='Enviando…';
+  POST({action:'maint',id:r.id,item:x,pdf:b64(pdfBytes(r)),pdfName:pdfName(r),mail:mailInfo(r,true)}).then(function(j){CUR=j.rec;NP=[];renderPh($('npp'),NP);$('npo').value='';$('nperr').textContent='';$('npgo').disabled=false;LIST.forEach(function(q){if(q.id===CUR.id)q.bad=true});showView()}).catch(function(e){$('npgo').disabled=false;$('nperr').textContent='Não foi possível enviar ('+e+'). Tente de novo.'})});
+$('showb').addEventListener('click',function(){$('docbody').innerHTML=px(CUR);$('docv').style.display='block';$('docv').scrollTop=0;document.body.style.overflow='hidden'});
+$('docx').addEventListener('click',function(){$('docv').style.display='none';document.body.style.overflow=''});
+$('docpdf').addEventListener('click',function(){$('pdfb').click()});
+$('pdfb').addEventListener('click',function(){try{var b=new Blob([pdfBytes(CUR)],{type:'application/pdf'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=pdfName(CUR);document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000)}catch(e){say('Não foi possível gerar o PDF.',1)}});
+
+/* ---------- fotos ---------- */
+function renderPh(el,arr){el.innerHTML=arr.map(function(s,i){return'<span style="position:relative"><img src="'+s+'" alt="foto"><button data-i="'+i+'" style="position:absolute;top:2px;right:2px;border:0;border-radius:50%;width:22px;height:22px;background:#000a;color:#fff;cursor:pointer">×</button></span>'}).join('')}
+function small(file,cb){var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.7))};im.src=fr.result};fr.readAsDataURL(file)}
+function bindPh(inp,box,get,after){inp.addEventListener('change',function(){Array.prototype.slice.call(inp.files).forEach(function(f){if(get().length>=4)return;small(f,function(d){if(get().length<4){get().push(d);renderPh(box,get());after()}})});inp.value=''});box.addEventListener('click',function(e){var b=e.target.closest('button[data-i]');if(b){get().splice(+b.dataset.i,1);renderPh(box,get());after()}})}
+bindPh($('avf'),$('avp'),function(){return D.ph},function(){stats()});
+bindPh($('npf'),$('npp'),function(){return NP},function(){});
+
+/* ---------- documento / PDF ---------- */
+function px(r){r.ph=r.ph||[];r.extra=r.extra||[];var bad=r.nc||r.av==='sim'||r.extra.length,TD='border:1px solid #999;padding:4px 6px;vertical-align:top',RB='background:#fdeaea;color:#8e0000;font-weight:bold',
+  P=function(a){return(a||[]).map(function(d){return'<img src="'+d+'" style="max-width:240px;max-height:240px;margin:4px">'}).join('')};
+  var h='<div style="font-family:Arial,sans-serif;font-size:13px;color:#000;background:#fff"><div style="font-size:15px;font-weight:bold">CHECKLIST PARA INSPEÇÃO DE EMPILHADEIRA, REACH STACKER E EQUIPAMENTOS <span style="font-weight:normal;font-size:11px">(Rev. 07)</span></div>';
+  h+='<div style="margin:8px 0;padding:8px;color:#fff;font-weight:bold;background:'+(bad?'#c62828':'#1b7f3b')+'">'+(bad?'⚠ NÃO CONFORMIDADE / AVARIA – REQUER ATENÇÃO':'✔ CHECKLIST OK')+'</div>';
+  h+='<table style="border-collapse:collapse;width:100%;margin-bottom:8px">';
+  [['Equipamento',r.eq,'Operador',r.op],['CNH (validade)',fd(r.cnh),'Equipe',r.team],['Turno',r.tn==='06-18'?'06:00 às 18:00':'18:00 às 06:00','Data da jornada',fd(r.date)],['Horímetro',r.hor,'Preenchido às',hm(r.ts)]].forEach(function(x){h+='<tr><td style="'+TD+';background:#eee"><b>'+x[0]+'</b></td><td style="'+TD+'">'+esc(x[1])+'</td><td style="'+TD+';background:#eee"><b>'+x[2]+'</b></td><td style="'+TD+'">'+esc(x[3])+'</td></tr>'});
+  h+='</table>';
+  S.forEach(function(sec){h+='<table style="border-collapse:collapse;width:100%;margin-bottom:8px"><tr><td colspan="3" style="'+TD+';background:#ddd"><b>'+esc(sec[0])+'</b></td></tr>';
+    sec[1].forEach(function(i){var it={id:i[0],inv:!!i[2]},nc=isNC(it,r.A),a=r.A[i[0]];
+      h+='<tr style="'+(nc?RB:'')+'"><td style="'+TD+'">'+i[0]+' – '+esc(i[1])+(CRIT.indexOf(i[0])>-1?' [CRÍTICO]':'')+'</td><td style="'+TD+';width:50px;text-align:center">'+(a==='sim'?'SIM':'NÃO')+'</td><td style="'+TD+';width:35%">'+(nc?'🔴 '+esc(r.O[i[0]]):'')+'</td></tr>'});
+    h+='</table>'});
+  if(r.av==='sim')h+='<div class="pb" style="border:2px solid #c62828;background:#fdeaea;color:#8e0000;padding:8px;margin-bottom:8px"><b>Avarias / não conformidades:</b> '+esc(r.avt)+'<br>'+P(r.ph)+'</div>';
+  r.extra.forEach(function(x){var t=items.filter(function(y){return y.id===x.id})[0].t;h+='<div class="pb" style="border:2px dashed #c62828;background:#fdeaea;color:#8e0000;padding:8px;margin-bottom:8px"><b>MANUTENÇÃO INFORMADA às '+hm(x.ts)+' – '+x.id+' – '+esc(t)+':</b> '+esc(x.obs)+'<br>'+P(x.ph)+'</div>'});
+  h+='<table class="pb" style="border-collapse:collapse;width:100%"><tr><td style="'+TD+';background:#eee"><b>Avarias / não conformidades?</b></td><td style="'+TD+'">'+(r.av==='sim'?'SIM':'NÃO')+'</td><td style="'+TD+';background:#eee"><b>Checklist OK?</b></td><td style="'+TD+'">'+(r.ok==='sim'?'SIM':'NÃO')+'</td></tr><tr><td style="'+TD+';background:#eee"><b>Requer manutenção?</b></td><td style="'+TD+'">'+(r.mnt==='sim'?'SIM':'NÃO')+'</td><td style="'+TD+';background:#eee"><b>Nº da O.S. (manutenção)</b></td><td style="'+TD+'">&nbsp;</td></tr></table>';
+  h+='<p class="pb" style="margin-top:14px">Responsável pela elaboração do checklist: <b>'+esc(r.op)+'</b> · Equipe '+esc(r.team)+' · '+fd(r.date)+' '+hm(r.ts)+'</p></div>';
+  return h}
+
+function pdfName(r){return'Checklist_'+r.eq+'_'+r.date+'_'+r.op.replace(/[^A-Za-z0-9]+/g,'_')+'.pdf'}
+function pdfBytes(r){
+  r.ph=r.ph||[];r.extra=r.extra||[];
+  var PW=595,PH=842,M=36,CW=PW-2*M,pages=[],P,y=M,IM=[],bad=r.nc||r.av==='sim'||r.extra.length,
+  cv=document.createElement('canvas').getContext('2d'),RED=[.55,0,0],PINK=[1,.92,.92],GR=[.93,.93,.93];
+  function wd(t,sz,b){cv.font=(b?'bold ':'')+sz+'px Arial,Helvetica,sans-serif';return cv.measureText(t).width*1.03}
+  function enc(s){var m={'–':150,'—':151,'“':147,'”':148,'‘':145,'’':146,'•':149,'…':133},o='',i,c,h;s=String(s==null?'':s);for(i=0;i<s.length;i++){h=s.charAt(i);c=s.charCodeAt(i);if(m[h])c=m[h];else if(c>255)continue;if(c===40||c===41||c===92)o+='\\';o+=String.fromCharCode(c)}return o}
+  function np(){P={c:[],im:[]};pages.push(P);y=M}
+  function T(x,yb,s,sz,b,col){P.c.push('BT /F'+(b?2:1)+' '+sz+' Tf '+(col||[0,0,0]).join(' ')+' rg '+x.toFixed(1)+' '+(PH-yb).toFixed(1)+' Td ('+enc(s)+') Tj ET')}
+  function R(x,yt,w,h,fill,stroke){var q=(PH-yt-h).toFixed(1);if(fill)P.c.push(fill.join(' ')+' rg '+x.toFixed(1)+' '+q+' '+w.toFixed(1)+' '+h.toFixed(1)+' re f');if(stroke)P.c.push('0.6 0.6 0.6 RG 0.5 w '+x.toFixed(1)+' '+q+' '+w.toFixed(1)+' '+h.toFixed(1)+' re S')}
+  function wrap(s,w,sz,b){var out=[];String(s==null?'':s).split(/\r?\n/).forEach(function(par){var ln='';par.split(' ').forEach(function(q){var t=ln?ln+' '+q:q;if(wd(t,sz,b)<=w){ln=t;return}if(ln)out.push(ln);ln=q;while(wd(ln,sz,b)>w&&ln.length>1){var k=ln.length;while(k>1&&wd(ln.slice(0,k),sz,b)>w)k--;out.push(ln.slice(0,k));ln=ln.slice(k)}});out.push(ln)});return out}
+  function row(cols,o){o=o||{};var sz=9,lh=12,pad=4,L=cols.map(function(c){return wrap(c.t,c.w-2*pad,sz,c.b||o.b)}),n=Math.max.apply(null,L.map(function(l){return l.length})),h=n*lh+2*pad,x=M;
+    if(y+h>PH-M-14)np();
+    cols.forEach(function(c,i){R(x,y,c.w,h,c.fill||o.fill,1);L[i].forEach(function(l,k){T(x+pad,y+pad+sz+k*lh-1,l,sz,c.b||o.b,o.col)});x+=c.w});y+=h}
+  function jpg(d){var b=atob(d.split(',')[1]),i=2,w=0,h=0,m;while(i<b.length-9){if(b.charCodeAt(i)!==255){i++;continue}m=b.charCodeAt(i+1);if(m===255){i++;continue}if(m>=192&&m<=207&&m!==196&&m!==200&&m!==204){h=b.charCodeAt(i+5)*256+b.charCodeAt(i+6);w=b.charCodeAt(i+7)*256+b.charCodeAt(i+8);break}i+=2+b.charCodeAt(i+2)*256+b.charCodeAt(i+3)}return{b:b,w:w,h:h}}
+  function photos(arr){var x=M,rh=0;arr.forEach(function(d){var j=jpg(d);if(!j.w)return;var w=170,h=w*j.h/j.w,n;if(h>170){h=170;w=h*j.w/j.h}
+    if(x+w>M+CW+1){x=M;y+=rh+6;rh=0}
+    if(y+h>PH-M-14){np();x=M;rh=0}
+    n=IM.push(j)-1;P.im.push(n);P.c.push('q '+w.toFixed(1)+' 0 0 '+h.toFixed(1)+' '+x.toFixed(1)+' '+(PH-y-h).toFixed(1)+' cm /Im'+n+' Do Q');x+=w+8;rh=Math.max(rh,h)});y+=rh+6}
+  function box(title,text,ph){var L=wrap(text,CW-12,9,0),h=14+L.length*12+10;if(y+h>PH-M-14)np();R(M,y,CW,h,PINK);P.c.push('0.78 0.16 0.16 RG 1.2 w '+M+' '+(PH-y-h)+' '+CW+' '+h+' re S');
+    wrap(title,CW-12,9,1).slice(0,1).forEach(function(l){T(M+6,y+12,l,9,1,RED)});L.forEach(function(l,k){T(M+6,y+24+k*12,l,9,0,RED)});y+=h+4;if(ph&&ph.length)photos(ph);y+=6}
+  np();
+  wrap('CHECKLIST PARA INSPEÇÃO DE EMPILHADEIRA, REACH STACKER E EQUIPAMENTOS (Rev. 07)',CW,13,1).forEach(function(l){T(M,y+12,l,13,1);y+=16});y+=6;
+  R(M,y,CW,26,bad?[.78,.16,.16]:[.11,.5,.23]);T(M+8,y+17,bad?'NÃO CONFORMIDADE / AVARIA – REQUER ATENÇÃO':'CHECKLIST OK',12,1,[1,1,1]);y+=34;
+  [['Equipamento',r.eq,'Operador',r.op],['CNH (validade)',fd(r.cnh),'Equipe',r.team],['Turno',r.tn==='06-18'?'06:00 às 18:00':'18:00 às 06:00','Data da jornada',fd(r.date)],['Horímetro',r.hor,'Preenchido às',hm(r.ts)]].forEach(function(a){
+    row([{t:a[0],w:100,b:1,fill:GR},{t:a[1],w:CW/2-100},{t:a[2],w:100,b:1,fill:GR},{t:a[3],w:CW/2-100}])});y+=8;
+  S.forEach(function(sec){if(y+60>PH-M-14)np();row([{t:sec[0],w:CW,b:1,fill:[.85,.85,.85]}]);
+    sec[1].forEach(function(i){var nc=isNC({id:i[0],inv:!!i[2]},r.A),a=r.A[i[0]];
+      row([{t:i[0]+' – '+i[1]+(CRIT.indexOf(i[0])>-1?' [CRÍTICO]':''),w:CW*.55},{t:a==='sim'?'SIM':'NÃO',w:CW*.1,b:1},{t:nc?(r.O[i[0]]||''):'',w:CW*.35}],nc?{fill:PINK,col:RED,b:1}:{})});y+=6});
+  if(r.av==='sim')box('AVARIAS / NÃO CONFORMIDADES',r.avt,r.ph);
+  r.extra.forEach(function(x){var q=items.filter(function(z){return z.id===x.id})[0];box('NOVO PROBLEMA (informado às '+hm(x.ts)+') – '+x.id+' – '+(q?q.t:''),x.obs,x.ph)});
+  row([{t:'Avarias / não conformidades?',w:CW*.3,b:1,fill:GR},{t:r.av==='sim'?'SIM':'NÃO',w:CW*.2},{t:'Checklist OK?',w:CW*.3,b:1,fill:GR},{t:r.ok==='sim'?'SIM':'NÃO',w:CW*.2}]);
+  row([{t:'Requer manutenção?',w:CW*.3,b:1,fill:GR},{t:r.mnt==='sim'?'SIM':'NÃO',w:CW*.2},{t:'Nº da O.S. (manutenção)',w:CW*.3,b:1,fill:GR},{t:'',w:CW*.2}]);
+  if(bad){y+=8;wrap('Número da O.S informada pela manutenção, Gentileza anexar nesse formulário.',CW,10,1).forEach(function(l){if(y+14>PH-M-14)np();T(M,y+10,l,10,1,RED);y+=14})}
+  y+=12;wrap('Responsável pela elaboração do checklist: '+r.op+' – Equipe '+r.team+' – '+fd(r.date)+' '+hm(r.ts),CW,9,0).forEach(function(l){if(y+14>PH-M-14)np();T(M,y+9,l,9,0);y+=13});
+  pages.forEach(function(p,i){p.c.push('BT /F1 8 Tf 0.4 0.4 0.4 rg '+M+' 20 Td ('+enc('Página '+(i+1)+'/'+pages.length)+') Tj ET')});
+  var n=4+IM.length,kids=[],objs={},out='%PDF-1.4\n',xr=[],id,i,u;
+  objs[1]='<< /Type /Catalog /Pages 2 0 R >>';
+  objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';
+  objs[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  IM.forEach(function(j,k){objs[5+k]='<< /Type /XObject /Subtype /Image /Width '+j.w+' /Height '+j.h+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+j.b.length+' >>\nstream\n'+j.b+'\nendstream'});
+  pages.forEach(function(p){var c=p.c.join('\n'),cid=++n,pid=++n;objs[cid]='<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream';
+    objs[pid]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> /XObject << '+p.im.map(function(k){return'/Im'+k+' '+(5+k)+' 0 R'}).join(' ')+' >> >> /Contents '+cid+' 0 R >>';kids.push(pid+' 0 R')});
+  objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+kids.length+' >>';
+  for(id=1;id<=n;id++){xr[id]=out.length;out+=id+' 0 obj\n'+objs[id]+'\nendobj\n'}
+  var xs=out.length;out+='xref\n0 '+(n+1)+'\n0000000000 65535 f \n';for(id=1;id<=n;id++)out+=('0000000000'+xr[id]).slice(-10)+' 00000 n \n';
+  out+='trailer\n<< /Size '+(n+1)+' /Root 1 0 R >>\nstartxref\n'+xs+'\n%%EOF';
+  u=new Uint8Array(out.length);for(i=0;i<out.length;i++)u[i]=out.charCodeAt(i)&255;return u}
+
+
+/* ---------- início ---------- */
+['op','cnh','team','tn'].forEach(function(k){$(k).addEventListener('change',function(){saveProf();$('dt').value=fd(jor());chkTn()})});
+$('eq').addEventListener('change',function(){history.replaceState(null,'','#'+encodeURIComponent(eqk()));load()});
+function fromHash(){var h=decodeURIComponent(location.hash.slice(1));if(h)$('eq').value=h.toUpperCase();load()}
+addEventListener('hashchange',fromHash);
+$('op').value=st.prof.op||'';$('cnh').value=st.prof.cnh||'';$('team').value=st.prof.team||'';
+var h0=new Date().getHours();$('tn').value=st.prof.tn||((h0>=6&&h0<18)?'06-18':'18-06');
+fromHash();
+</script>
+</body>
+</html>
